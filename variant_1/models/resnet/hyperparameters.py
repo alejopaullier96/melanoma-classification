@@ -1,0 +1,4 @@
+class hyperparameters:
+    RESNET_HIDDEN_LAYER_SIZE = 1000
+    FFNN_HIDDEN_LAYER_SIZE = 500
+    DROPOUT = 0.2
