@@ -28,7 +28,6 @@ from dataset.dataset import MelanomaDataset
 from models.efficientnet.hyperparameters import hyperparameters as ef_hp
 from models.efficientnet.model import EfficientNetwork
 from preprocessing import preprocess
-from validation_strategy import create_folds
 
 
 def train_folds(preds_submission, model, MelanomaDataset, version='v1'):
@@ -263,7 +262,7 @@ test_df = preprocess.label_encode_transform(test_df, label_encoders)
 # Out of Fold Predictions
 oof = np.zeros(shape = (len(train_df), 1))
 # Create folds
-folds = create_folds(train_df, config.FOLDS)
+folds = utils.create_folds(train_df, config.FOLDS)
 # Predictions
 preds_submission = torch.zeros(size = (len(test_df), 1), dtype=torch.float32, device=device)
 # Create model instance
