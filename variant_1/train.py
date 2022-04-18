@@ -30,7 +30,23 @@ from models.efficientnet.model import EfficientNetwork
 from preprocessing import preprocess
 
 
-def train_folds(preds_submission, model, MelanomaDataset, version='v1'):
+def train_folds(predictions, model, MelanomaDataset, folds, version='v1'):
+    """
+    This function iterates over folds. On each fold, the original train dataset is split into a new train subset and a
+    validation dataset. Test dataset is static through fold iterations. For each fold it trains the model for the
+    specified epochs. Hence, training as well as evaluation on validation dataset is performed at an epoch level.
+    The amount of iterations is therefore FOLDS*EPOCHS. After training is complete, the model is evaluated on the
+    validation dataset and the model artifacts are saved if the metric is improved. Finally, at the last of every fold
+    iteration the evaluation metric is computed for the test dataset. Please note that model selection is performed
+    with respect to the validation metric and that no retraining on the original train dataset is performed.
+
+    :param predictions:
+    :param model: model architecture. Check available models on the /models for more information.
+    :param MelanomaDataset: a custom dataset for this variant. Check /dataset for more information.
+    :param folds: folds for training and validation. Check create_folds() function for more information.
+    :param version: model version. Each time we train a new model we must create a new version.
+    :return:
+    """
     # Creates a .txt file that will contain the logs
     f = open(f"logs/logs_{version}.txt", "w+")
 
@@ -44,31 +60,31 @@ def train_folds(preds_submission, model, MelanomaDataset, version='v1'):
         # --- Create Instances ---
         # Best ROC score in this fold
         best_roc = None
-        # Reset patience before every fold
+        # Reset patience before every fold. Check ReadMe.md for more information.
         patience_f = config.PATIENCE
 
         # Initiate the model
         model = model
 
-        # Create optimizer
+        # Create optimizer. Check ReadMe.md for more information.
         optimizer = torch.optim.Adam(model.parameters(),
                                      lr=config.LEARNING_RATE,
                                      weight_decay=config.WEIGHT_DECAY)
 
-        # Create scheduler
+        # Create scheduler. Check ReadMe.md for more information.
         scheduler = ReduceLROnPlateau(optimizer=optimizer,
                                       mode='max',
                                       patience=config.LR_PATIENCE,
                                       verbose=True,
                                       factor=config.LR_FACTOR)
-        # Create Loss
+        # Create Loss. Check ReadMe.md for more information.
         criterion = nn.BCEWithLogitsLoss()
 
         # --- Read in Data ---
         train_data = train_df.iloc[train_index].reset_index(drop=True)
         valid_data = train_df.iloc[valid_index].reset_index(drop=True)
 
-        # Create Data instances
+        # Create Data instances. Check ReadMe.md for more information.
         train = MelanomaDataset(train_data,
                                 vertical_flip=ds_hp.VERTICAL_FLIP,
                                 horizontal_flip=ds_hp.HORIZONTAL_FLIP,
@@ -106,6 +122,7 @@ def train_folds(preds_submission, model, MelanomaDataset, version='v1'):
             # Sets the module in training mode.
             model.train()
 
+            # === Iterate over batches ===
             for (images, csv_data), labels in train_loader:
                 # Save them to device
                 images = torch.tensor(images, device=device, dtype=torch.float32)
@@ -236,10 +253,10 @@ def train_folds(preds_submission, model, MelanomaDataset, version='v1'):
                     out = torch.sigmoid(out)
 
                     # ADDS! the prediction to the matrix we already created
-                    preds_submission[k * images.shape[0]: k * images.shape[0] + images.shape[0]] += out
+                    predictions[k * images.shape[0]: k * images.shape[0] + images.shape[0]] += out
 
             # Divide Predictions by TTA (to average the results during TTA)
-            preds_submission /= config.TTA
+            predictions /= config.TTA
 
         # === CLEANING ===
         # Clear memory
@@ -250,26 +267,24 @@ def train_folds(preds_submission, model, MelanomaDataset, version='v1'):
 
 utils.set_seed()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-print('Device available now:', device)
+print('Device available now: ', device)
 train_df = pd.read_csv(paths.TRAIN_CSV, sep = ',')
 test_df = pd.read_csv(paths.TEST_CSV, sep = ',')
-# train_df = pd.read_csv("../data/train.csv", sep =',')
-# test_df = pd.read_csv("../data/test.csv", sep =',')
 train_df = utils.add_path_column(train_df, "dcm_name", "path_jpg", "../data/train_jpg/")
-train_df, label_encoders = preprocess.label_encode(train_df)
 test_df = utils.add_path_column(test_df, "dcm_name", "path_jpg", "../data/test_jpg/")
+train_df, label_encoders = preprocess.label_encode(train_df)
 test_df = preprocess.label_encode_transform(test_df, label_encoders)
 # Out of Fold Predictions
 oof = np.zeros(shape = (len(train_df), 1))
 # Create folds
 folds = utils.create_folds(train_df, config.FOLDS)
 # Predictions
-preds_submission = torch.zeros(size = (len(test_df), 1), dtype=torch.float32, device=device)
+predictions = torch.zeros(size = (len(test_df), 1), dtype=torch.float32, device=device)
 # Create model instance
 model = EfficientNetwork(output_size=config.OUTPUT_SIZE,
                          no_columns=ef_hp.NO_COLUMNS,
                          b4=False, b2=True).to(device)
 # Train
-train_folds(preds_submission, model, MelanomaDataset, version='v1')
+train_folds(predictions, model, MelanomaDataset, folds, version='v1')
 # Keep best model only
 utils.keep_best_model("saved_models")

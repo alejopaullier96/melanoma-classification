@@ -70,6 +70,7 @@ def keep_best_model(model_directory):
 
 def create_folds(df, k):
     """
+    Creates folds for training.
     :param df: a dataframe with a "target" column and an "ID" column.
     :param k: number of folds
     :return: folds

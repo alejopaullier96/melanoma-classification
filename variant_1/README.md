@@ -101,12 +101,37 @@ The following are the configuration parameters' definitions:
 - `FOLDS`: how many folds to use on our K-fold cross-validation strategy.
 - `LEARNING_RATE`: learning rate for the optimizer.
 - `LR_FACTOR`: decreasing rate of the learning rate.
-- `LR_PATIENCE`: 1  # 1 MODEL NOT IMPROVING UNTIL LR IS DECREASING
+- `LR_PATIENCE`: -
 - `NUM_WORKERS`: tells the data loader instance how many sub-processes to use for data loading.  
 - `OUTPUT_SIZE`: size of the output cell. Since it is a binary classifier is set to 1.
 - `PATIENCE`: Early Stopping Patience (how many epochs to wait with no improvement until it stops)
 - `TTA`: Test Time Augmentation Rounds (creating multiple augmented copies of each image in the test set, having the model make a prediction for each, then returning an ensemble of those predictions)
-- `WEIGHT_DECAY`: 0.0
+- `WEIGHT_DECAY`: -
+
+### Important module classes
+
+**PyTorch**
+
+Optimizers:
+- [Adam](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html)
+
+Schedulers:
+- [ReduceLROnPlateau](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#reducelronplateau)
+
+Loss functions:
+- [BCEWithLogitsLoss](https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html)
+
+Dataset:
+- [Dataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset)
+
+DataLoader:
+- [DataLoader](https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader)
+
+**Scikit Learn**
+
+Validation:
+- [GroupKFold](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GroupKFold.html)
+
 
 ### Future changes
 
