@@ -71,7 +71,7 @@ def keep_best_model(model_directory):
 def create_folds(df, k):
     """
     Creates folds for training.
-    :param df: a dataframe with a "target" column and an "ID" column.
+    :param df: a dataframe with a "target" column and an "patient_id" column.
     :param k: number of folds
     :return: folds
     """
@@ -83,7 +83,7 @@ def create_folds(df, k):
     # Generate indices to split data into training and test set.
     folds = group_fold.split(X = np.zeros(length),
                              y = df['target'],
-                             groups = df['ID'].tolist())
+                             groups = df['patient_id'].tolist())
     return folds
 
 

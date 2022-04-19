@@ -32,7 +32,7 @@ Files:
 
 `train.csv` and `test.csv` attributes:
 
-- `image_name`: unique identifier, points to filename of related DICOM image [str].
+- `image_id`: unique identifier, points to filename of related DICOM image [str].
 - `patient_id`: unique patient identifier [str].
 - `sex`: the sex of the patient (when unknown, will be blank) [str].
 - `age_approx`: approximate patient age at time of imaging [int].
