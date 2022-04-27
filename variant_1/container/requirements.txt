@@ -4,6 +4,7 @@ efficientnet-pytorch==0.7.1
 opencv-python==4.5.5.64
 pandas==1.4.2
 requests==2.27.1
+sagemaker
 scikit-learn==1.0.2
 torch==1.10.2
 torchvision==0.11.3

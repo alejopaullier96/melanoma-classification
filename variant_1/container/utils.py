@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import os
 import random
+import string
 import torch
 
 
@@ -91,3 +92,8 @@ def create_oof(df):
     length = len(df)
     # Out of Fold Predictions
     oof = np.zeros(shape = (length, 1))
+
+
+def short_id():
+    alphabet = string.ascii_lowercase + string.digits
+    return ''.join(random.choices(alphabet, k=12))

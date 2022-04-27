@@ -1,13 +1,9 @@
 # System
-import os, os.path
-import gc
-import time
 import datetime
-import utils
-
-# Basics
-import pandas as pd
+import gc
 import numpy as np
+import os, os.path
+import time
 
 # Sklearn
 from sklearn.metrics import accuracy_score, roc_auc_score
@@ -15,22 +11,16 @@ from sklearn.metrics import accuracy_score, roc_auc_score
 # PyTorch
 import torch
 import torch.nn as nn
-
 from torch.utils.data import DataLoader
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
-import warnings
-warnings.filterwarnings("ignore")
-
+# Local utility code
 from config import config, paths
 from dataset.hyperparameters import hyperparameters as ds_hp
-from dataset.dataset import MelanomaDataset
 from models.efficientnet.hyperparameters import hyperparameters as ef_hp
 from models.efficientnet.model import EfficientNetwork
-from preprocessing import preprocess
 
-
-def train_folds(predictions, model, MelanomaDataset, folds, version='v1'):
+def train_function(predictions, train_df, test_df, model, MelanomaDataset, folds, device, version='v1'):
     """
     This function iterates over folds. On each fold, the original train dataset is split into a new train subset and a
     validation dataset. Test dataset is static through fold iterations. For each fold it trains the model for the
@@ -49,6 +39,9 @@ def train_folds(predictions, model, MelanomaDataset, folds, version='v1'):
     """
     # Creates a .txt file that will contain the logs
     f = open(f"logs/logs_{version}.txt", "w+")
+
+    # Out of Fold Predictions
+    oof = np.zeros(shape=(len(train_df), 1))
 
     # Iterate over folds
     for fold, (train_index, valid_index) in enumerate(folds):
@@ -263,28 +256,3 @@ def train_folds(predictions, model, MelanomaDataset, folds, version='v1'):
         del train, valid, train_loader, valid_loader, images, labels
         # Garbage collector
         gc.collect()
-
-
-utils.set_seed()
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-print('Device available now: ', device)
-train_df = pd.read_csv(paths.TRAIN_CSV, sep = ',')
-test_df = pd.read_csv(paths.TEST_CSV, sep = ',')
-train_df = utils.add_path_column(train_df, "image_id", "path_jpg", "./data/train_jpg/")
-test_df = utils.add_path_column(test_df, "image_id", "path_jpg", "./data/test_jpg/")
-train_df, label_encoders = preprocess.label_encode(train_df)
-test_df = preprocess.label_encode_transform(test_df, label_encoders)
-# Out of Fold Predictions
-oof = np.zeros(shape = (len(train_df), 1))
-# Create folds
-folds = utils.create_folds(train_df, config.FOLDS)
-# Predictions
-predictions = torch.zeros(size = (len(test_df), 1), dtype=torch.float32, device=device)
-# Create model instance
-model = EfficientNetwork(output_size=config.OUTPUT_SIZE,
-                         no_columns=ef_hp.NO_COLUMNS,
-                         b4=False, b2=True).to(device)
-# Train
-train_folds(predictions, model, MelanomaDataset, folds, version='v1')
-# Keep best model only
-utils.keep_best_model("saved_models")

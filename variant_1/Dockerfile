@@ -1,27 +1,23 @@
 FROM nvidia/cuda:10.2-cudnn7-runtime-ubuntu18.04
 
-# Set the Conda path in the path variables
-ENV PATH="/root/miniconda3/bin:${PATH}"
-ARG PATH="/root/miniconda3/bin:${PATH}"
-
 # Install htop, Python3, wget
 RUN apt update \
     && apt install -y htop python3-dev wget \
     && apt install -y python3-opencv
 
-# Install MiniConda for Linux
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && mkdir root/.conda \
-    && sh Miniconda3-latest-Linux-x86_64.sh -b \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh
+# Copy all files in current working directory to opt/program
+COPY ./container opt/program
 
-# Create virtual environment
-RUN conda create -y -n my_venv python=3.9
+# Set some environment variables. PYTHONUNBUFFERED keeps Python from buffering our standard
+# output stream, which means that logs can be delivered to the user quickly. PYTHONDONTWRITEBYTECODE
+# keeps Python from writing the .pyc files which are unnecessary in this case. We also update
+# PATH so that the train and serve programs are found when the container is invoked.
+ENV PYTHONUNBUFFERED=TRUE
+ENV PYTHONDONTWRITEBYTECODE=TRUE
+ENV PATH="/opt/program:${PATH}"
 
-# Copy all files in current working directory to src/
-COPY ./variant_1 src/
-
-# Activate virtual environment and install requirements
-RUN /bin/bash -c "cd src/variant_1 \
-    && source activate my_venv \
+# Install requirements
+RUN /bin/bash -c "cd opt/program \
     && pip3 install -r requirements.txt"
+
+WORKDIR /opt/program

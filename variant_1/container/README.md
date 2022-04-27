@@ -1,6 +1,6 @@
 # Melanoma Classification
 
-Last update 2022-03-10.
+Last update 2022-04-26.
 
 ### Introduction
 
@@ -12,20 +12,20 @@ requests, possibly as a Docker container.
 
 ### Docker (locally)
 
-First, `cd` into the Dockerfile location. Build the Docker image from the Dockerfile using:
+Build:
+1. `cd` into the Dockerfile location. 
+2. Build the Docker image from the Dockerfile using:
 
-`docker build -f Dockerfile -t image_name . `
-
-If you are running the `docker build` command on a Macbook with M1 chip this will raise an error. Try running the same 
-command with the `--platform linux/x86_64` flag instead:
-
-`docker build -f Dockerfile --platform linux/x86_64 -t image_name . `
-
-**Train**
+    `docker build -f Dockerfile -t image_name . `
+    
+    If you are running the `docker build` command on a Macbook with M1 chip this will raise an error. Try running the same 
+    command with the `--platform linux/x86_64` flag instead:
+    
+    `docker build -f Dockerfile --platform linux/x86_64 -t image_name . `
 
 To train the model run:
 
-`docker run -ti image_name /bin/bash -c "cd src/variant_1 && source activate my_venv && python3 train.py" `
+`docker run -ti image_name train`
 
 ### Docker (AWS)
 
@@ -33,7 +33,7 @@ To train the model run:
 the role. Check that the role has `AmazonEC2ContainerRegistryFullAccess` and `AmazonSageMakerFullAccess` permissions.
 2. Open a terminal and log in ECR running the command: 
 `aws ecr get-login-password --region region | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com`
-3. `cd` into the container root.
+3. `cd` into the variant root.
 4. Execute `bash build_and_push.sh docker-image-name`
 5. Check if image is pulled in your SageMaker instance with: `docker image ls`. If image is not pulled, pull it with: 
    `docker pull image_URI`.
