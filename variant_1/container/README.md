@@ -1,6 +1,6 @@
 # Melanoma Classification
 
-Last update 2022-04-26.
+Last update 2022-04-29.
 
 ### Introduction
 
@@ -95,16 +95,15 @@ structure indicated by the S3 key structure.
 **Tree**: 
 ```
 .
-├── Dockerfile
 ├── README.md
 ├── config.py
 ├── dataset
 │   ├── dataset.py
-│   ├── functions.py
 │   └── hyperparameters.py
+├── inference.py
 ├── logs
-│   └── 
 ├── models
+│   ├── __init__.py
 │   ├── efficientnet
 │   │   ├── __init__.py
 │   │   ├── hyperparameters.py
@@ -116,11 +115,11 @@ structure indicated by the S3 key structure.
 │   └── preprocess.py
 ├── requirements.txt
 ├── saved_models
-│   └── 
+├── serve
+├── train
 ├── train.py
-├── utils.py
-└── validation_strategy.py
-
+├── train_function.py
+└── utils.py
 ```
 
 **Folders:**
@@ -136,7 +135,14 @@ structure indicated by the S3 key structure.
 - `config.py`: contains general configurations and hyperparameters for the training stage.
 - `Dockerfile`: Dockerfile to build the docker image.
 - `requirements.txt`: contains all necessary Python libraries which will be installed in the docker container.
-- `train.py`: main function. This function trains the model and stores the best model's artifacts/weights. It also outputs the logs from the training process. 
+- `train_function.py`: this file contains the training loop. It is the core of the project.
+- `train.py`: this file is intended to be run locally. It trains the model and stores the best model's 
+  artifacts/weights. It also outputs the logs from the training process. This function performs some data 
+  pre-processing prior to executing the training loop.
+- `train`: this is the main file run on the Docker container in AWS. When training is done through the 
+  `Estimator` this is the function called. It is very similar to `train.py` but follows the data structured of the S3 
+  bucket needed for training.
+- `serve`: this is the function to serve the model on AWS.
 - `utils.py`: some utility functions used in the training process.
 
 ### Configuration

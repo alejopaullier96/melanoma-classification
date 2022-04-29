@@ -62,7 +62,6 @@ def train():
         # Preprocessing
         train_df = pd.read_csv(data_location+"train.csv", sep=',')
         test_df = pd.read_csv(data_location+"test.csv", sep=',')
-
         train_df = utils.add_path_column(train_df, "image_id", "path_jpg", data_location+"train_jpg/")
         test_df = utils.add_path_column(test_df, "image_id", "path_jpg", data_location+"test_jpg/")
         train_df, label_encoders = preprocess.label_encode(train_df)
@@ -93,8 +92,8 @@ def train():
         # Keep best model only
         utils.keep_best_model("saved_models")
         best_model_path = "saved_models/" + os.listdir("saved_models/")[0]
-
-        shutil.copy(best_model_path, model_path)
+        dst = os.path.split(os.getcwd())[0] + "/ml/model/"
+        shutil.copy(best_model_path, dst)
 
         print('Training complete.')
     except Exception as e:
@@ -110,6 +109,5 @@ def train():
 
 if __name__ == '__main__':
     train()
-
     # A zero exit code causes the job to be marked a Succeeded.
     sys.exit(0)
