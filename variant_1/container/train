@@ -60,8 +60,8 @@ def train():
 
         data_location = "/opt/ml/input/data/training/"
         # Preprocessing
-        train_df = pd.read_csv("train.csv'", sep=',')
-        test_df = pd.read_csv("test.csv", sep=',')
+        train_df = pd.read_csv(data_location+"train.csv", sep=',')
+        test_df = pd.read_csv(data_location+"test.csv", sep=',')
 
         train_df = utils.add_path_column(train_df, "image_id", "path_jpg", data_location+"train_jpg/")
         test_df = utils.add_path_column(test_df, "image_id", "path_jpg", data_location+"test_jpg/")
@@ -92,7 +92,7 @@ def train():
 
         # Keep best model only
         utils.keep_best_model("saved_models")
-        best_model_path = os.listdir("saved_models/")[0]
+        best_model_path = "saved_models/" + os.listdir("saved_models/")[0]
 
         shutil.copy(best_model_path, model_path)
 

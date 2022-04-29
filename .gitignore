@@ -3,7 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,linux,python,jupyternotebooks,pycharm
 
 ### Ignore data folder
-variant_1/variant_1/data/*
+variant_1/container/data/*
 ### Ignore saved models
 saved_models/*
 ### Ignore logs
@@ -13,7 +13,7 @@ logs/*
 # website: http://jupyter.org/
 
 .ipynb_checkpoints
-variant_1/variant_1/.ipynb_checkpoints/*
+variant_1/container/.ipynb_checkpoints/*
 
 # IPython
 profile_default/

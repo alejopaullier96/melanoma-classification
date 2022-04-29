@@ -14,8 +14,8 @@ then
 fi
 
 # Add execution permisions to the following files:
-chmod +x variant_1/train
-chmod +x variant_1/serve
+chmod +x container/train
+chmod +x container/serve
 
 # Get the account number associated with the current IAM credentials
 account=$(aws sts get-caller-identity --query Account --output text)
@@ -26,16 +26,13 @@ then
     exit 255
 fi
 
-
 # Get the region defined in the current configuration (default to us-west-2 if none defined)
 region=$(aws configure get region)
 region=${region:-us-east-1}
 
-
 fullname="${account}.dkr.ecr.${region}.amazonaws.com/${image}:latest"
 
 # If the repository doesn't exist in ECR, create it.
-
 aws ecr describe-repositories --repository-names "${image}" > /dev/null 2>&1
 
 # Get exit status of the last executed command.
@@ -52,5 +49,4 @@ aws ecr get-login-password --region "${region}" | docker login --username AWS --
 
 docker build  -f Dockerfile -t ${image} .
 docker tag ${image} ${fullname}
-
 docker push ${fullname}

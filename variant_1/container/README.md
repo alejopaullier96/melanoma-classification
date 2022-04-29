@@ -72,6 +72,24 @@ Files:
 - `benign_malignant`: indicator of malignancy of imaged lesion [str].
 - `target`: binarized version of the target variable [int].
 
+### S3 Data structure
+
+Depending on the input mode that the algorithm supports, Amazon SageMaker either copies input data files from an S3 
+bucket to a local directory in the Docker container, or makes it available as input streams. Input data 
+configuration can be seen in the `TrainingJob` description. 
+
+If using `S3 data distribution type=FullyReplicated` then SageMaker copies all the same data from the specified 
+bucket (the data location passed to `Estimator.fit()`) maintaining its structure under `opt/ml/input/data/training` 
+inside the docker container at training time. 
+
+These files are passed to the `train()` function so **keep in mind that the `train()` function is coded expecting a 
+certain data structure on S3**. If the data in the specified bucket does not hold the expected structure then the 
+`TrainingJob` will fail.
+
+The channels are created based on the call to `CreateTrainingJob` but it's generally important that channels match what 
+the algorithm expects. The files for each channel will be copied from S3 to this directory, preserving the tree 
+structure indicated by the S3 key structure. 
+
 ### Structure
 
 **Tree**: 
