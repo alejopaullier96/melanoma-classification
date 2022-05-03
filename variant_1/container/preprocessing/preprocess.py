@@ -1,3 +1,5 @@
+import pickle
+
 from sklearn.preprocessing import LabelEncoder
 
 
@@ -35,3 +37,17 @@ def label_encode_transform(df, label_encoders):
     df['anatomy'] = encoded_all[1]
 
     return df
+
+
+def save_label_encoders(label_encoders):
+    """
+    Save encoders to the encoders folder as pickles.
+    :param label_encoders: list with label encoders
+    :return: -
+    """
+    to_encode = ['sex', 'anatomy']
+
+    for column in to_encode:
+        label_encoder = label_encoders[column]
+        with open('encoders/label_encoder'+ "_" + column, 'wb') as f:
+            pickle.dump(label_encoder, f)

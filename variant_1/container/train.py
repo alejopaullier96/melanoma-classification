@@ -2,7 +2,6 @@
 
 # Basics
 import pandas as pd
-import numpy as np
 import torch
 import warnings
 warnings.filterwarnings("ignore")
@@ -25,6 +24,7 @@ train_df = utils.add_path_column(train_df, "image_id", "path_jpg", "./data/train
 test_df = utils.add_path_column(test_df, "image_id", "path_jpg", "./data/test_jpg/")
 train_df, label_encoders = preprocess.label_encode(train_df)
 test_df = preprocess.label_encode_transform(test_df, label_encoders)
+preprocess.save_label_encoders(label_encoders)
 
 # Create folds
 folds = utils.create_folds(train_df, config.FOLDS)

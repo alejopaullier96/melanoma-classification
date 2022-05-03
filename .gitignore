@@ -5,9 +5,9 @@
 ### Ignore data folder
 variant_1/container/data/*
 ### Ignore saved models
-saved_models/*
+variant_1/container/saved_models/*
 ### Ignore logs
-logs/*
+variant_1/container/logs/*
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
