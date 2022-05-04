@@ -3,7 +3,6 @@ import cv2
 import flask
 import json
 import numpy as np
-import pickle
 import torch
 
 from albumentations import (Normalize, Compose, RandomResizedCrop)
@@ -16,17 +15,12 @@ from models.efficientnet.model import EfficientNetwork
 # The flask app for serving predictions
 app = flask.Flask(__name__)
 
-label_encoder_sex = pickle.load(open("encoders/label_encoder_sex", 'rb'))
-label_encoder_anatomy = pickle.load(open("encoders/label_encoder_anatomy", 'rb'))
-
 
 class ScoringService(object):
 
     def __init__(self):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.model = None  # Where we keep the model when it's loaded
-        self.label_encoder_sex = label_encoder_sex
-        self.label_encoder_anatomy = label_encoder_anatomy
 
     def get_model(self):
         """Get the model object for this instance, loading it if it's not already loaded."""
@@ -73,19 +67,13 @@ class ScoringService(object):
         image = torch.unsqueeze(image, 0)  # we need to add a dimension because of the DataLoader
         return image
 
-    def transform_json_data(self, json_data):
-        json_data["sex"] = self.label_encoder_sex.transform([json_data["sex"]])[0]
-        json_data["anatomy"] = self.label_encoder_anatomy.transform([json_data["anatomy"]])[0]
-        return json_data
-
     def convert_json_to_tensor(self, json_data):
         """
         Converts incoming JSON data to a PyTorch tensor.
         :param json_data: JSON payload
         :return torch_data: JSON payload converted to PyTorch tensor.
         """
-        data = self.transform_json_data(json_data)
-        data = torch.tensor(list(data.values()), device=self.device, dtype=torch.float32)
+        data = torch.tensor(list(json_data.values()), device=self.device, dtype=torch.float32)
         data = torch.unsqueeze(data, 0)  # we need to add a dimension because of the DataLoader
         return data
 
@@ -110,12 +98,12 @@ def transformation():
     data = json.loads(request.data)
     image_b64_encoded = data["image"]
     image = scorer.decode_image_to_torch(image_b64_encoded)
-    json_data = data["json_data"]
+    json_data = json.loads(data["json_data"])
     json_data = scorer.convert_json_to_tensor(json_data)
 
     # Make prediction
     prediction = scorer.predict(image, json_data)
-    return prediction
+    return str(prediction)
 
 
 scorer = ScoringService()

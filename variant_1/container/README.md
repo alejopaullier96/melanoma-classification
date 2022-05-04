@@ -21,7 +21,7 @@ import requests
 # Send POST request to localhost
 url = "http://127.0.0.1:5000/invocations"
 payload = {
-    "image": image_b64_encoded,
+    "image": image_b64_encoded.decode("utf8"),
     "json_data": json_file
     }
 payload = json.dumps(payload)
