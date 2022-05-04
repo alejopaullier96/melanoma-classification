@@ -10,6 +10,43 @@ different melanomas. This variant uses this [notebook](https://www.kaggle.com/an
 This project intends to train and serve a Deep Learning computer vision model behind an API endpoint using HTTP 
 requests, possibly as a Docker container.
 
+### Inference
+
+To get predictions from the train model send a POST request to the model's endpoint with a payload with a 
+byte-encoded image and the required metadata as a JSON file. Example:
+```
+import json
+import requests
+
+# Send POST request to localhost
+url = "http://127.0.0.1:5000/invocations"
+payload = {
+    "image": image_b64_encoded,
+    "json_data": json_file
+    }
+payload = json.dumps(payload)
+response = requests.post(url, data = payload)
+response
+```
+The JSON file must have the following structure:
+```
+{
+	"sex": 1,
+	"age": 55.0,
+	"anatomy": 3
+}
+```
+To avoid using [Label Encoders](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.
+html) at inference time and reduce complexity the request's attributes must be mapped to their categories prior to 
+being sent to the model. This must be done in the front-end. The mapping function for the `sex` and `anatomy` 
+attributes are respectively:
+```
+# Sex
+{'female': 0, 'male': 1}
+# Anatomy
+{'head/neck': 0, 'lower extremity': 1, 'torso': 2, 'upper extremity': 3}
+```
+
 ### Docker (locally)
 
 Build:

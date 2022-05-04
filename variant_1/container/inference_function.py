@@ -70,7 +70,7 @@ def predict(model, image, data):
     :param model: trained model weights.
     :param image: melanoma image.
     :param data: metadata in JSON format.
-    :return:
+    :return: prediction.
     """
     model.eval()
     with torch.no_grad():
