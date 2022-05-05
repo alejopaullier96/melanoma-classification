@@ -52,7 +52,9 @@ def start_server():
     subprocess.check_call(['ln', '-sf', '/dev/stderr', '/var/log/nginx/error.log'])
 
     nginx = subprocess.Popen(['nginx', '-c', '/opt/program/nginx.conf'])
-    gunicorn = subprocess.Popen(['gunicorn',
+    # Since we are running our inference in a conda virtual environment we need to run gunicorn from the
+    # virtual environment's location that's why we add "/root/miniconda3/envs/my_venv/bin/"
+    gunicorn = subprocess.Popen(['/root/miniconda3/envs/my_venv/bin/gunicorn',
                                  '--timeout', str(model_server_timeout),
                                  '-k', 'sync',
                                  '-b', 'unix:/tmp/gunicorn.sock',

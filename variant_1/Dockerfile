@@ -13,7 +13,8 @@ ARG PATH="/root/miniconda3/bin:${PATH}"
 # Install htop, Python3, wget
 RUN apt update \
     && apt install -y htop python3-dev wget \
-    && apt install -y python3-opencv
+    && apt install -y python3-opencv \
+    && apt install -y nginx
 
 # Create symbolic links
 RUN ln -s /usr/bin/python3 /usr/bin/python

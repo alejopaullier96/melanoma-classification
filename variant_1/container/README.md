@@ -1,6 +1,6 @@
 # Melanoma Classification
 
-Last update 2022-04-29.
+Last update 2022-05-05.
 
 ### Introduction
 
@@ -36,8 +36,7 @@ The JSON file must have the following structure:
 	"anatomy": 3
 }
 ```
-To avoid using [Label Encoders](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.
-html) at inference time and reduce complexity the request's attributes must be mapped to their categories prior to 
+To avoid using [Label Encoders](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) at inference time and reduce complexity the request's attributes must be mapped to their categories prior to 
 being sent to the model. This must be done in the front-end. The mapping function for the `sex` and `anatomy` 
 attributes are respectively:
 ```
@@ -137,8 +136,11 @@ structure indicated by the S3 key structure.
 ├── dataset
 │   ├── dataset.py
 │   └── hyperparameters.py
-├── inference.py
+├── encoders
+│   ├── label_encoder_anatomy
+│   └── label_encoder_sex
 ├── logs
+├── model.pth
 ├── models
 │   ├── __init__.py
 │   ├── efficientnet
@@ -148,6 +150,8 @@ structure indicated by the S3 key structure.
 │   └── resnet
 │       ├── hyperparameters.py
 │       └── model.py
+├── nginx.conf
+├── predictor.py
 ├── preprocessing
 │   └── preprocess.py
 ├── requirements.txt
@@ -156,7 +160,8 @@ structure indicated by the S3 key structure.
 ├── train
 ├── train.py
 ├── train_function.py
-└── utils.py
+├── utils.py
+└── wsgi.py
 ```
 
 **Folders:**
