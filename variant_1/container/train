@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# This implementation works in File mode and makes no assumptions about the input file names.
+# This implementation works in File mode.
 
 from __future__ import print_function
 

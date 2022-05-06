@@ -13,7 +13,7 @@ then
     exit 1
 fi
 
-# Add execution permisions to the following files:
+# Add execution permissions to the following files:
 chmod +x container/train
 chmod +x container/serve
 

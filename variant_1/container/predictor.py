@@ -82,7 +82,7 @@ class ScoringService(object):
 def ping():
     """Determine if the container is working and healthy. In this sample container, we declare
     it healthy if we can load the model successfully."""
-    health = ScoringService.get_model() is not None  # You can insert a health check here
+    health = scorer.get_model() is not None  # You can insert a health check here
 
     status = 200 if health else 404
     return flask.Response(response=f"Status is: {status}", status=status, mimetype="application/json")
