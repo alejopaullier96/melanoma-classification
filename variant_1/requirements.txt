@@ -1,8 +1,0 @@
-albumentations
-cv2
-efficientnet_pytorch
-numpy
-pandas
-sklearn
-torch
-torchvision
