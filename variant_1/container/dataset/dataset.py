@@ -2,9 +2,9 @@ import cv2
 import numpy as np
 
 # Data Augmentation for Image Preprocessing
-from albumentations import (ToFloat, Normalize, VerticalFlip, HorizontalFlip, Compose, Resize,
-                            RandomBrightnessContrast, HueSaturationValue, Blur, GaussNoise,
-                            Rotate, RandomResizedCrop, Cutout, ShiftScaleRotate)
+from albumentations import (Normalize, VerticalFlip, HorizontalFlip, Compose,
+                            RandomBrightnessContrast, HueSaturationValue,
+                            RandomResizedCrop, ShiftScaleRotate)
 from albumentations.pytorch import ToTensorV2
 from torch.utils.data import Dataset
 
