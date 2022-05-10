@@ -230,6 +230,14 @@ DataLoader:
 Validation:
 - [GroupKFold](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GroupKFold.html)
 
+### Test Time Augmentations
+
+This model performs TTA (Test Time Augmentations). Test-Time Data Augmentation (short TTA) is a technique that can 
+boost a model's performance by applying augmentation during inference and is a popular strategy to use with deep 
+learning models. Inference is performed on multiple altered versions of the same image, and the predictions are then 
+aggregated to get a higher overall accuracy.
+
+For more information check this [blog](https://stepup.ai/test_time_data_augmentation/)
 
 ### Future changes
 
