@@ -6,7 +6,7 @@ import string
 import torch
 
 
-from sklearn.model_selection import GroupKFold
+from sklearn.model_selection import StratifiedGroupKFold
 
 
 def set_seed(seed=1234):
@@ -77,7 +77,7 @@ def create_folds(df, k):
     :return: folds
     """
     # Create Object
-    group_fold = GroupKFold(n_splits = k)
+    group_fold = StratifiedGroupKFold(n_splits = k)
 
     length = len(df)
 

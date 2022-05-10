@@ -30,12 +30,14 @@ def train_function(predictions, train_df, test_df, model, MelanomaDataset, folds
     iteration the evaluation metric is computed for the test dataset. Please note that model selection is performed
     with respect to the validation metric and that no retraining on the original train dataset is performed.
 
-    :param predictions:
+    :param predictions: predictions for the test set.
     :param model: model architecture. Check available models on the /models for more information.
     :param MelanomaDataset: a custom dataset for this variant. Check /dataset for more information.
     :param folds: folds for training and validation. Check create_folds() function for more information.
     :param version: model version. Each time we train a new model we must create a new version.
-    :return:
+    :return oof: Out of Fold predictions. In each fold we predict the Validation set, in consequence, as validation
+    sets are non overlapping we end up with predictions for the whole train set.
+    :return predictions: predictions for the test set
     """
     # Creates a .txt file that will contain the logs
     f = open(f"logs/logs_{version}.txt", "w+")
@@ -256,3 +258,5 @@ def train_function(predictions, train_df, test_df, model, MelanomaDataset, folds
         del train, valid, train_loader, valid_loader, images, labels
         # Garbage collector
         gc.collect()
+
+    return oof, predictions

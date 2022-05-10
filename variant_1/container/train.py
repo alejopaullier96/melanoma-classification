@@ -36,13 +36,13 @@ model = EfficientNetwork(output_size=config.OUTPUT_SIZE,
                          b4=False, b2=True).to(device)
 version = utils.short_id()
 # Train
-train_function(predictions,
-               train_df,
-               test_df,
-               model,
-               MelanomaDataset,
-               folds,
-               device,
-               version=version)
+oof, predictions = train_function(predictions,
+                                   train_df,
+                                   test_df,
+                                   model,
+                                   MelanomaDataset,
+                                   folds,
+                                   device,
+                                   version=version)
 # Keep best model only
 utils.keep_best_model("saved_models")
