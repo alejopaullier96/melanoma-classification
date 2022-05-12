@@ -4,7 +4,7 @@ from sklearn.preprocessing import LabelEncoder
 
 
 def label_encode(df):
-    to_encode = ['sex', 'anatomy', 'diagnosis']
+    to_encode = ['sex', 'anatomy']
     encoded_all = []
     label_encoders ={}
 
@@ -16,7 +16,6 @@ def label_encode(df):
 
     df['sex'] = encoded_all[0]
     df['anatomy'] = encoded_all[1]
-    df['diagnosis'] = encoded_all[2]
 
     if 'benign_malignant' in df.columns:
         df.drop(['benign_malignant'], axis=1, inplace=True)

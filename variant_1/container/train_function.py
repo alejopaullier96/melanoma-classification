@@ -4,6 +4,7 @@ import gc
 import numpy as np
 import os, os.path
 import time
+from tqdm import tqdm
 
 # Sklearn
 from sklearn.metrics import accuracy_score, roc_auc_score
@@ -118,28 +119,29 @@ def train_function(predictions, train_df, test_df, model, MelanomaDataset, folds
             model.train()
 
             # === Iterate over batches ===
-            for (images, csv_data), labels in train_loader:
-                # Save them to device
-                images = torch.tensor(images, device=device, dtype=torch.float32)
-                csv_data = torch.tensor(csv_data, device=device, dtype=torch.float32)
-                labels = torch.tensor(labels, device=device, dtype=torch.float32)
+            with tqdm(train_loader, unit="train_batch") as tqdm_train_loader:
+                for (images, csv_data), labels in tqdm_train_loader:
+                    # Save them to device
+                    images = torch.tensor(images, device=device, dtype=torch.float32)
+                    csv_data = torch.tensor(csv_data, device=device, dtype=torch.float32)
+                    labels = torch.tensor(labels, device=device, dtype=torch.float32)
 
-                # Clear gradients first; very important, usually done BEFORE prediction
-                optimizer.zero_grad()
+                    # Clear gradients first; very important, usually done BEFORE prediction
+                    optimizer.zero_grad()
 
-                # Log Probabilities & Backpropagation
-                out = model(images, csv_data)
-                loss = criterion(out, labels.unsqueeze(1))
-                loss.backward()
-                optimizer.step()
+                    # Log Probabilities & Backpropagation
+                    out = model(images, csv_data)
+                    loss = criterion(out, labels.unsqueeze(1))
+                    loss.backward()
+                    optimizer.step()
 
-                # --- Save information after this batch ---
-                # Save loss
-                train_losses += loss.item()
-                # From log probabilities to actual probabilities
-                train_preds = torch.round(torch.sigmoid(out))  # 0 and 1
-                # Number of correct predictions
-                correct += (train_preds.cpu() == labels.cpu().unsqueeze(1)).sum().item()
+                    # --- Save information after this batch ---
+                    # Save loss
+                    train_losses += loss.item()
+                    # From log probabilities to actual probabilities
+                    train_preds = torch.round(torch.sigmoid(out))  # 0 and 1
+                    # Number of correct predictions
+                    correct += (train_preds.cpu() == labels.cpu().unsqueeze(1)).sum().item()
             # Compute Train Accuracy
             train_acc = correct / len(train_index)
 
@@ -152,7 +154,7 @@ def train_function(predictions, train_df, test_df, model, MelanomaDataset, folds
 
             # Disables gradients (we need to be sure no optimization happens)
             with torch.no_grad():
-                for k, ((images, csv_data), labels) in enumerate(valid_loader):
+                for k, ((images, csv_data), labels) in enumerate(tqdm(valid_loader, unit="valid_batch")):
                     images = torch.tensor(images, device=device, dtype=torch.float32)
                     csv_data = torch.tensor(csv_data, device=device, dtype=torch.float32)
                     labels = torch.tensor(labels, device=device, dtype=torch.float32)
@@ -225,7 +227,7 @@ def train_function(predictions, train_df, test_df, model, MelanomaDataset, folds
             # Predicting again on Validation data to get preds for OOF
             valid_preds = torch.zeros(size=(len(valid_index), 1), device=device, dtype=torch.float32)
 
-            for k, ((images, csv_data), _) in enumerate(valid_loader):
+            for k, ((images, csv_data), _) in enumerate(tqdm(valid_loader, unit="oof_batch")):
                 images = torch.tensor(images, device=device, dtype=torch.float32)
                 csv_data = torch.tensor(csv_data, device=device, dtype=torch.float32)
 
@@ -239,7 +241,7 @@ def train_function(predictions, train_df, test_df, model, MelanomaDataset, folds
             # --- TEST ---
             # Now (Finally) prediction for our TEST data
             for i in range(config.TTA):
-                for k, (images, csv_data) in enumerate(test_loader):
+                for k, (images, csv_data) in enumerate(tqdm(test_loader, unit=f"test_loader_TTA_{i}")):
                     images = torch.tensor(images, device=device, dtype=torch.float32)
                     csv_data = torch.tensor(csv_data, device=device, dtype=torch.float32)
 
