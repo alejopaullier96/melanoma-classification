@@ -59,7 +59,7 @@ def keep_best_model(model_directory):
     model_names = []
     for _, _, files in os.walk(model_directory):
         model_names = files
-    model_names = [y[:5] for y  in [x[-9:] for x in model_names]]
+    model_names = [y[:5] for y in [x[-9:] for x in model_names]]
     scores = [float(score) for score in model_names]
     index_min = np.argmax(scores)
     best_model = files[index_min]

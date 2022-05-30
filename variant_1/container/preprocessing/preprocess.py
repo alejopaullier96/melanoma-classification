@@ -4,6 +4,12 @@ from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 
 
 def label_encode(df):
+    """
+    Encodes pandas dataframe columns (fixed) and saves the Label Encoders.
+    :param df: pandas dataframe with columns to encode.
+    :return: df: same dataframe but with encoded columns.
+    :return: label_encoders: list with Scikit-Learn LabelEncoder().
+    """
     to_encode = ['sex', 'anatomy']
     encoded_all = []
     label_encoders = {}
@@ -24,6 +30,12 @@ def label_encode(df):
 
 
 def label_encode_transform(df, label_encoders):
+    """
+    Transforms pandas dataframe columns given a set of Label Encoders.
+    :param df: pandas dataframe with columns to encode.
+    :param label_encoders: list with Scikit-Learn LabelEncoder().
+    :return:
+    """
     to_encode = ['sex', 'anatomy']
     encoded_all = []
 
@@ -39,6 +51,12 @@ def label_encode_transform(df, label_encoders):
 
 
 def minmax_scale(df):
+    """
+    Scales pandas dataframe columns (fixed) and saves the MinMax Scalers.
+    :param df: pandas dataframe with columns to scale.
+    :return: df: same dataframe but with scaled columns.
+    :return: minmax_scalers: list with Scikit-Learn MinMaxScalers().
+    """
     to_scale = ['sex', 'age', 'anatomy']
     scaled_all = []
     minmax_scalers = {}
@@ -60,6 +78,12 @@ def minmax_scale(df):
 
 
 def minmax_scale_transform(df, minmax_scalers):
+    """
+    Transforms pandas dataframe columns given a set of MinMax Scalers.
+    :param df: pandas dataframe with columns to scale.
+    :param minmax_scalers: list with Scikit-Learn MinMaxScalers().
+    :return:
+    """
     to_scale = ['sex', 'age', 'anatomy']
     scaled_all = []
 
@@ -101,7 +125,7 @@ def load_minmax_scaler(minmax_scaler_path):
 def save_label_encoders(label_encoders):
     """
     Save encoders to the encoders folder as pickles.
-    :param label_encoders: list with label encoders
+    :param label_encoders: list with LabelEncoders
     :return: -
     """
     to_encode = ['sex', 'anatomy']
@@ -115,7 +139,7 @@ def save_label_encoders(label_encoders):
 def save_minmax_scalers(minmax_scalers):
     """
     Saves MinMaxScalers to the encoders folder as pickles.
-    :param minmax_scalers: list with minmax scalers.
+    :param minmax_scalers: list with MinMaxScalers.
     :return: -
     """
     to_scale = ['sex', 'age', 'anatomy']

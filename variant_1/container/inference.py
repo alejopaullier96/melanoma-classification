@@ -13,9 +13,12 @@ data = inference_utils.build_payload(image_path,
 model = inference_utils.get_model(model_path, device)
 
 def infer(model, data):
-    """Do an inference on a single batch of data. In this sample server, we take data as CSV, convert
-    it to a pandas data frame for internal use and then convert the predictions back to CSV (which really
-    just means one prediction per line, since there's a single column.
+    """
+    Do an inference on a single payload. Since this functions intends to reproduce future use we expect data to come
+    as a JSON payload where image metadata comes as a dictionary and the image is base64 encoded.
+    :param model: trained model.
+    :param data: JSON with an "image" and a "json_data" keys.
+    :return: prediction (between 0 and 1).
     """
     # Load data
     image_b64_encoded = data["image"]

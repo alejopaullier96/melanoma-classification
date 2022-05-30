@@ -20,9 +20,16 @@ from preprocessing import preprocess
 from train_function import train_function
 import utils
 
-def best_single_model(df, model, preds_submission, device, TTA=3):
-    '''Function that takes an input model (trained) and makes the prediction for submission.'''
-
+def best_single_model(df, model, predictions, device, TTA=3):
+    """
+    This functions makes perdictions for a whole dataset given a model.
+    :param df: pandas dataframe with the expected columns.
+    :param model: trained model (architecture + weights).
+    :param predictions: torch tensor of zeros with lenght = len(df).
+    :param device:
+    :param TTA:
+    :return:
+    """
     ds = MelanomaDataset(df, vertical_flip=0.5, horizontal_flip=0.5,
                            is_train=False, is_valid=False, is_test=True)
     ds_loader = DataLoader(ds, batch_size=64, shuffle=False)
@@ -40,12 +47,12 @@ def best_single_model(df, model, preds_submission, device, TTA=3):
                 out = torch.sigmoid(out)
 
                 # ADDS! the prediction to the matrix we already created
-                preds_submission[k * images.shape[0]: k * images.shape[0] + images.shape[0]] += out
+                predictions[k * images.shape[0]: k * images.shape[0] + images.shape[0]] += out
 
         # Divide Predictions by TTA (to average the results during TTA)
-        preds_submission /= TTA
-        preds_submission = pd.DataFrame(preds_submission)
-        return preds_submission
+        predictions /= TTA
+        predictions = pd.DataFrame(predictions)
+        return predictions
 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -61,6 +68,6 @@ best_model = EfficientNetwork(output_size = 1,
                             b4=False,
                             b2=True).to(device)
 best_model.load_state_dict(torch.load("model.pth", map_location=torch.device(device)))
-preds_submission = torch.zeros(size = (len(df), 1), dtype=torch.float32, device=device)
-preds = best_single_model(df, best_model, preds_submission, device, TTA=3)
+predictions = torch.zeros(size = (len(df), 1), dtype=torch.float32, device=device)
+preds = best_single_model(df, best_model, predictions, device, TTA=3)
 preds.to_csv("preds.csv")

@@ -28,7 +28,9 @@ test_df = preprocess.label_encode_transform(test_df, label_encoders)
 # Scale data
 train_df, minmax_scalers = preprocess.minmax_scale(train_df)
 test_df = preprocess.minmax_scale_transform(test_df, minmax_scalers)
+# Save
 preprocess.save_label_encoders(label_encoders)
+preprocess.save_minmax_scalers(minmax_scalers)
 
 # Create folds
 folds = utils.create_folds(train_df, config.FOLDS)
@@ -50,8 +52,9 @@ oof, predictions = train_function(predictions,
                                    version=version)
 oof = pd.DataFrame(oof)
 predictions = pd.DataFrame(predictions)
+# Save Out of Fold and Test predictions
 oof.to_csv("oof.csv", index=False)
 predictions.to_csv("predictions.csv", index=False)
 
-# Keep best model only
-utils.keep_best_model("saved_models")
+# Uncomment if you want to keep the best model only:
+# utils.keep_best_model("saved_models")
