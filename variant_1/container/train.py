@@ -22,8 +22,12 @@ train_df = pd.read_csv(paths.TRAIN_CSV, sep = ',')
 test_df = pd.read_csv(paths.TEST_CSV, sep = ',')
 train_df = utils.add_path_column(train_df, "image_id", "path_jpg", paths.TRAIN_JPG_FOLDER)
 test_df = utils.add_path_column(test_df, "image_id", "path_jpg", paths.TEST_JPG_FOLDER)
+# Label encode data
 train_df, label_encoders = preprocess.label_encode(train_df)
 test_df = preprocess.label_encode_transform(test_df, label_encoders)
+# Scale data
+train_df, minmax_scalers = preprocess.minmax_scale(train_df)
+test_df = preprocess.minmax_scale_transform(test_df, minmax_scalers)
 preprocess.save_label_encoders(label_encoders)
 
 # Create folds
@@ -44,5 +48,10 @@ oof, predictions = train_function(predictions,
                                    folds,
                                    device,
                                    version=version)
+oof = pd.DataFrame(oof)
+predictions = pd.DataFrame(predictions)
+oof.to_csv("oof.csv", index=False)
+predictions.to_csv("predictions.csv", index=False)
+
 # Keep best model only
 utils.keep_best_model("saved_models")

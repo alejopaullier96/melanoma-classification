@@ -73,6 +73,7 @@ def train_function(predictions, train_df, test_df, model, MelanomaDataset, folds
                                       patience=config.LR_PATIENCE,
                                       verbose=True,
                                       factor=config.LR_FACTOR)
+
         # Create Loss. Check ReadMe.md for more information.
         criterion = nn.BCEWithLogitsLoss()
 
