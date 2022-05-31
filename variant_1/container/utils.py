@@ -6,7 +6,7 @@ import string
 import torch
 
 
-from sklearn.model_selection import GroupKFold
+from sklearn.model_selection import StratifiedGroupKFold
 
 
 def set_seed(seed=1234):
@@ -59,7 +59,7 @@ def keep_best_model(model_directory):
     model_names = []
     for _, _, files in os.walk(model_directory):
         model_names = files
-    model_names = [y[:5] for y  in [x[-9:] for x in model_names]]
+    model_names = [y[:5] for y in [x[-9:] for x in model_names]]
     scores = [float(score) for score in model_names]
     index_min = np.argmax(scores)
     best_model = files[index_min]
@@ -77,7 +77,7 @@ def create_folds(df, k):
     :return: folds
     """
     # Create Object
-    group_fold = GroupKFold(n_splits = k)
+    group_fold = StratifiedGroupKFold(n_splits = k)
 
     length = len(df)
 

@@ -2,9 +2,9 @@ import cv2
 import numpy as np
 
 # Data Augmentation for Image Preprocessing
-from albumentations import (ToFloat, Normalize, VerticalFlip, HorizontalFlip, Compose, Resize,
-                            RandomBrightnessContrast, HueSaturationValue, Blur, GaussNoise,
-                            Rotate, RandomResizedCrop, Cutout, ShiftScaleRotate)
+from albumentations import (Normalize, VerticalFlip, HorizontalFlip, Compose,
+                            RandomBrightnessContrast, HueSaturationValue,
+                            RandomResizedCrop, ShiftScaleRotate)
 from albumentations.pytorch import ToTensorV2
 from torch.utils.data import Dataset
 
@@ -20,6 +20,8 @@ class MelanomaDataset(Dataset):
         self.horizontal_flip = horizontal_flip
 
         # Data Augmentation (custom for each dataset type)
+        # Crop dimensions are because of EfficientNet input layer. Checkout each EfficientNet variant resolution here:
+        # https://keras.io/examples/vision/image_classification_efficientnet_fine_tuning/
         if is_train or is_test:
             self.transform = Compose([RandomResizedCrop(height=224,
                                                         width=224,

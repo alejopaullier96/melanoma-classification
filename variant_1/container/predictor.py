@@ -5,9 +5,12 @@ import json
 import numpy as np
 import torch
 
-from albumentations import (Normalize, Compose, RandomResizedCrop)
+from albumentations import (Normalize, VerticalFlip, HorizontalFlip, Compose,
+                            RandomBrightnessContrast, HueSaturationValue,
+                            RandomResizedCrop, ShiftScaleRotate)
 from albumentations.pytorch import ToTensorV2
 from config import config
+from dataset.hyperparameters import hyperparameters as ds_hp
 from flask import request
 from models.efficientnet.hyperparameters import hyperparameters as ef_hp
 from models.efficientnet.model import EfficientNetwork
@@ -48,6 +51,14 @@ class ScoringService(object):
         transformer = Compose([RandomResizedCrop(height=224,
                                                  width=224,
                                                  scale=(0.4, 1.0)),
+                               ShiftScaleRotate(rotate_limit=90,
+                                                scale_limit=[0.8, 1.2]),
+                               HorizontalFlip(p=ds_hp.HORIZONTAL_FLIP),
+                               VerticalFlip(p=ds_hp.VERTICAL_FLIP),
+                               HueSaturationValue(sat_shift_limit=[0.7, 1.3],
+                                                  hue_shift_limit=[-0.1, 0.1]),
+                               RandomBrightnessContrast(brightness_limit=[0.7, 1.3],
+                                                        contrast_limit=[0.7, 1.3]),
                                Normalize(),
                                ToTensorV2()])
         image = transformer(image=image)["image"]

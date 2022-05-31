@@ -27,7 +27,6 @@ class EfficientNetwork(nn.Module):
                                  nn.BatchNorm1d(hyperparameters.FFNN_HIDDEN_LAYER_SIZE),
                                  nn.ReLU(),
                                  nn.Dropout(p=hyperparameters.DROPOUT),
-
                                  nn.Linear(hyperparameters.FFNN_HIDDEN_LAYER_SIZE,
                                            hyperparameters.FFNN_HIDDEN_LAYER_SIZE),
                                  nn.BatchNorm1d(hyperparameters.FFNN_HIDDEN_LAYER_SIZE),
