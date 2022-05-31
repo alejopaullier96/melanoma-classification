@@ -3,12 +3,12 @@ import torch
 from variant_1.container import inference_utils
 
 model_path = "model.pth"
-image_path = "data/train_jpg/ISIC_0528044.jpg"
+image_path = "data/train_jpg/ISIC_0188955.jpg"
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 data = inference_utils.build_payload(image_path,
                                      1,
-                                     80.0,
-                                     0)
+                                     75.0,
+                                     1)
 
 model = inference_utils.get_model(model_path, device)
 

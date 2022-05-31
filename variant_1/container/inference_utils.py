@@ -102,17 +102,12 @@ def predict(model, image, json_data):
     :param json_data:
     :return: prediction
     """
-    TTA = 3
     model.eval()
 
     with torch.no_grad():
-        predictions = 0
-        for i in range(TTA):
-            prediction = model.forward(image, json_data, verbose=False)
-            prediction = torch.sigmoid(prediction)[0].item()
-            predictions += prediction
-        predictions /= TTA
-    return predictions
+        prediction = model.forward(image, json_data, verbose=False)
+        prediction = torch.sigmoid(prediction)[0].item()
+    return prediction
 
 
 def transform(image):
@@ -124,14 +119,6 @@ def transform(image):
     transformer = Compose([RandomResizedCrop(height=224,
                                              width=224,
                                              scale=(0.4, 1.0)),
-                           ShiftScaleRotate(rotate_limit=90,
-                                            scale_limit=[0.8, 1.2]),
-                           HorizontalFlip(p=ds_hp.HORIZONTAL_FLIP),
-                           VerticalFlip(p=ds_hp.VERTICAL_FLIP),
-                           HueSaturationValue(sat_shift_limit=[0.7, 1.3],
-                                              hue_shift_limit=[-0.1, 0.1]),
-                           RandomBrightnessContrast(brightness_limit=[0.7, 1.3],
-                                                    contrast_limit=[0.7, 1.3]),
                            Normalize(),
                            ToTensorV2()])
     image = transformer(image=image)["image"]
