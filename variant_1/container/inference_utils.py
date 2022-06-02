@@ -102,8 +102,6 @@ def predict(model, image, json_data):
     :param json_data:
     :return: prediction
     """
-    model.eval()
-
     with torch.no_grad():
         prediction = model.forward(image, json_data, verbose=False)
         prediction = torch.sigmoid(prediction)[0].item()

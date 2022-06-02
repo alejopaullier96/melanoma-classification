@@ -11,6 +11,7 @@ data = inference_utils.build_payload(image_path,
                                      1)
 
 model = inference_utils.get_model(model_path, device)
+model.eval()
 
 def infer(model, data):
     """

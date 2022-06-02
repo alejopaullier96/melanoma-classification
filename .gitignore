@@ -4,16 +4,20 @@
 
 ### Ignore data folder
 variant_1/container/data/*
+variant_2/container/data/*
 ### Ignore saved models
 variant_1/container/saved_models/*
+variant_2/container/saved_models/*
 ### Ignore logs
 variant_1/container/logs/*
+variant_2/container/logs/*
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
 
 .ipynb_checkpoints
 variant_1/container/.ipynb_checkpoints/*
+variant_2/container/.ipynb_checkpoints/*
 
 # IPython
 profile_default/
