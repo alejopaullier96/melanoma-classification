@@ -249,6 +249,16 @@ aggregated to get a higher overall accuracy.
 
 For more information check this [blog](https://stepup.ai/test_time_data_augmentation/)
 
+### Data
+
+[Data](https://www.kaggle.com/c/siim-isic-melanoma-classification/discussion/160147) on different resolutions for 
+training EfficientNets of different sizes with better accuracy (more computation time!).
+
+### Validation
+
+Good [read](https://www.kaggle.com/competitions/siim-isic-melanoma-classification/discussion/175614) on OOF and 
+cross-validation strategies.
+
 ### Future changes
 
 - The Docker Image produced by the Dockerfile is huge (~6.51 GB). This must be reduced. PyTorch libraries are very large.
