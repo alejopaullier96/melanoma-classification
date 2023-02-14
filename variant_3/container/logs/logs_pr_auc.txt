@@ -1,0 +1,298 @@
+---------- Fold: 1 ----------
+0:04:23 | Epoch: 1/10 | Train Loss: 286.6 | Valid Loss: 94.5 | Train ROC-AUC: 0.55 | Valid ROC-AUC: 0.7348
+Epoch: 1/10 | Train Precision: 0.6732 | Train Recall: 0.4096 | Train Accuracy: 0.8929 | Train CM: [[26259   846]
+ [ 2512  1743]]
+Epoch: 1/10 | Valid Precision: 0.6759 | Valid Recall: 0.6351 | Valid Accuracy: 0.9099 | Valid CM: [[5171  257]
+ [ 308  536]]
+Epoch: 1/10 | Learning rate: 0.0005 | Optimal threshold 0.2714768350124359
+
+----------------------------------------------------------------------------------------------------
+
+0:04:00 | Epoch: 2/10 | Train Loss: 265.6 | Valid Loss: 76.03 | Train ROC-AUC: 0.5933 | Valid ROC-AUC: 0.8077
+Epoch: 2/10 | Train Precision: 0.7408 | Train Recall: 0.4367 | Train Accuracy: 0.9028 | Train CM: [[26455   650]
+ [ 2397  1858]]
+Epoch: 2/10 | Valid Precision: 0.7506 | Valid Recall: 0.7133 | Valid Accuracy: 0.9295 | Valid CM: [[5228  200]
+ [ 242  602]]
+Epoch: 2/10 | Learning rate: 0.0005 | Optimal threshold 0.22426600754261017
+
+----------------------------------------------------------------------------------------------------
+
+0:03:59 | Epoch: 3/10 | Train Loss: 255.6 | Valid Loss: 63.13 | Train ROC-AUC: 0.6181 | Valid ROC-AUC: 0.889
+Epoch: 3/10 | Train Precision: 0.7664 | Train Recall: 0.4565 | Train Accuracy: 0.9074 | Train CM: [[26514   592]
+ [ 2312  1942]]
+Epoch: 3/10 | Valid Precision: 0.8402 | Valid Recall: 0.7784 | Valid Accuracy: 0.9503 | Valid CM: [[5303  125]
+ [ 187  657]]
+Epoch: 3/10 | Learning rate: 0.0005 | Optimal threshold 0.18459418416023254
+
+----------------------------------------------------------------------------------------------------
+
+0:03:58 | Epoch: 4/10 | Train Loss: 251.3 | Valid Loss: 62.39 | Train ROC-AUC: 0.6291 | Valid ROC-AUC: 0.8637
+Epoch: 4/10 | Train Precision: 0.824 | Train Recall: 0.4577 | Train Accuracy: 0.9132 | Train CM: [[26690   416]
+ [ 2307  1947]]
+Epoch: 4/10 | Valid Precision: 0.8387 | Valid Recall: 0.7393 | Valid Accuracy: 0.9458 | Valid CM: [[5308  120]
+ [ 220  624]]
+Epoch: 4/10 | Learning rate: 0.0005 | Optimal threshold 0.28901180624961853
+
+----------------------------------------------------------------------------------------------------
+
+0:03:59 | Epoch: 5/10 | Train Loss: 250.2 | Valid Loss: 151.9 | Train ROC-AUC: 0.6293 | Valid ROC-AUC: 0.5325
+Epoch: 5/10 | Train Precision: 0.7855 | Train Recall: 0.4675 | Train Accuracy: 0.9104 | Train CM: [[26562   543]
+ [ 2266  1989]]
+Epoch: 5/10 | Valid Precision: 0.0 | Valid Recall: 0.0 | Valid Accuracy: 0.8651 | Valid CM: [[5426    2]
+ [ 844    0]]
+Epoch: 5/10 | Learning rate: 0.0005 | Optimal threshold 0.9999995231628418
+
+----------------------------------------------------------------------------------------------------
+
+Early stopping (no improvement since 3 models) | Best Metric: 0.8889706226069355
+---------- Fold: 2 ----------
+0:04:00 | Epoch: 1/10 | Train Loss: 288.0 | Valid Loss: 49.1 | Train ROC-AUC: 0.5444 | Valid ROC-AUC: 0.9061
+Epoch: 1/10 | Train Precision: 0.6677 | Train Recall: 0.4102 | Train Accuracy: 0.8923 | Train CM: [[26240   868]
+ [ 2508  1744]]
+Epoch: 1/10 | Valid Precision: 0.9147 | Valid Recall: 0.819 | Valid Accuracy: 0.9651 | Valid CM: [[5356   65]
+ [ 154  697]]
+Epoch: 1/10 | Learning rate: 0.0005 | Optimal threshold 0.3805921971797943
+
+----------------------------------------------------------------------------------------------------
+
+0:03:59 | Epoch: 2/10 | Train Loss: 265.8 | Valid Loss: 46.5 | Train ROC-AUC: 0.5945 | Valid ROC-AUC: 0.9224
+Epoch: 2/10 | Train Precision: 0.7077 | Train Recall: 0.459 | Train Accuracy: 0.901 | Train CM: [[26303   806]
+ [ 2300  1951]]
+Epoch: 2/10 | Valid Precision: 0.9348 | Valid Recall: 0.8249 | Valid Accuracy: 0.9684 | Valid CM: [[5372   49]
+ [ 149  702]]
+Epoch: 2/10 | Learning rate: 0.0005 | Optimal threshold 0.19078181684017181
+
+----------------------------------------------------------------------------------------------------
+
+0:03:59 | Epoch: 3/10 | Train Loss: 256.2 | Valid Loss: 40.99 | Train ROC-AUC: 0.6146 | Valid ROC-AUC: 0.9265
+Epoch: 3/10 | Train Precision: 0.7313 | Train Recall: 0.4601 | Train Accuracy: 0.9039 | Train CM: [[26388   719]
+ [ 2296  1957]]
+Epoch: 3/10 | Valid Precision: 0.9218 | Valid Recall: 0.8449 | Valid Accuracy: 0.9692 | Valid CM: [[5360   61]
+ [ 132  719]]
+Epoch: 3/10 | Learning rate: 0.0005 | Optimal threshold 0.25662633776664734
+
+----------------------------------------------------------------------------------------------------
+
+0:03:58 | Epoch: 4/10 | Train Loss: 252.8 | Valid Loss: 40.94 | Train ROC-AUC: 0.6229 | Valid ROC-AUC: 0.9282
+Epoch: 4/10 | Train Precision: 0.8106 | Train Recall: 0.4593 | Train Accuracy: 0.9122 | Train CM: [[26654   456]
+ [ 2298  1952]]
+Epoch: 4/10 | Valid Precision: 0.9301 | Valid Recall: 0.8602 | Valid Accuracy: 0.9723 | Valid CM: [[5366   55]
+ [ 119  732]]
+Epoch: 4/10 | Learning rate: 0.0005 | Optimal threshold 0.12370233982801437
+
+----------------------------------------------------------------------------------------------------
+
+0:03:58 | Epoch: 5/10 | Train Loss: 249.1 | Valid Loss: 37.88 | Train ROC-AUC: 0.6325 | Valid ROC-AUC: 0.9397
+Epoch: 5/10 | Train Precision: 0.795 | Train Recall: 0.4643 | Train Accuracy: 0.9111 | Train CM: [[26599   509]
+ [ 2278  1974]]
+Epoch: 5/10 | Valid Precision: 0.9539 | Valid Recall: 0.8273 | Valid Accuracy: 0.9711 | Valid CM: [[5387   34]
+ [ 147  704]]
+Epoch: 5/10 | Learning rate: 0.0005 | Optimal threshold 0.6069260835647583
+
+----------------------------------------------------------------------------------------------------
+
+0:04:00 | Epoch: 6/10 | Train Loss: 246.3 | Valid Loss: 41.36 | Train ROC-AUC: 0.6384 | Valid ROC-AUC: 0.9388
+Epoch: 6/10 | Train Precision: 0.7944 | Train Recall: 0.4708 | Train Accuracy: 0.9117 | Train CM: [[26590   518]
+ [ 2250  2002]]
+Epoch: 6/10 | Valid Precision: 0.945 | Valid Recall: 0.8484 | Valid Accuracy: 0.9727 | Valid CM: [[5379   42]
+ [ 129  722]]
+Epoch: 6/10 | Learning rate: 0.0005 | Optimal threshold 0.18894782662391663
+
+----------------------------------------------------------------------------------------------------
+
+0:04:01 | Epoch: 7/10 | Train Loss: 241.9 | Valid Loss: 52.68 | Train ROC-AUC: 0.6481 | Valid ROC-AUC: 0.9295
+Epoch: 7/10 | Train Precision: 0.8027 | Train Recall: 0.4824 | Train Accuracy: 0.9137 | Train CM: [[26604   504]
+ [ 2201  2051]]
+Epoch: 7/10 | Valid Precision: 0.942 | Valid Recall: 0.8202 | Valid Accuracy: 0.9688 | Valid CM: [[5378   43]
+ [ 153  698]]
+Epoch: 7/10 | Learning rate: 0.0005 | Optimal threshold 0.1059645265340805
+
+----------------------------------------------------------------------------------------------------
+
+Early stopping (no improvement since 3 models) | Best Metric: 0.9397344981267467
+---------- Fold: 3 ----------
+0:04:00 | Epoch: 1/10 | Train Loss: 282.9 | Valid Loss: 59.78 | Train ROC-AUC: 0.5564 | Valid ROC-AUC: 0.8771
+Epoch: 1/10 | Train Precision: 0.6076 | Train Recall: 0.4431 | Train Accuracy: 0.8856 | Train CM: [[25886  1218]
+ [ 2370  1886]]
+Epoch: 1/10 | Valid Precision: 0.8714 | Valid Recall: 0.7583 | Valid Accuracy: 0.9526 | Valid CM: [[5338   94]
+ [ 203  637]]
+Epoch: 1/10 | Learning rate: 0.0005 | Optimal threshold 0.2586449086666107
+
+----------------------------------------------------------------------------------------------------
+
+0:04:01 | Epoch: 2/10 | Train Loss: 261.2 | Valid Loss: 68.27 | Train ROC-AUC: 0.6031 | Valid ROC-AUC: 0.8567
+Epoch: 2/10 | Train Precision: 0.7218 | Train Recall: 0.4518 | Train Accuracy: 0.902 | Train CM: [[26363   741]
+ [ 2333  1923]]
+Epoch: 2/10 | Valid Precision: 0.8682 | Valid Recall: 0.706 | Valid Accuracy: 0.9463 | Valid CM: [[5342   90]
+ [ 247  593]]
+Epoch: 2/10 | Learning rate: 0.0005 | Optimal threshold 0.15629710257053375
+
+----------------------------------------------------------------------------------------------------
+
+0:04:00 | Epoch: 3/10 | Train Loss: 254.2 | Valid Loss: 92.86 | Train ROC-AUC: 0.6231 | Valid ROC-AUC: 0.7937
+Epoch: 3/10 | Train Precision: 0.7773 | Train Recall: 0.4677 | Train Accuracy: 0.9096 | Train CM: [[26535   570]
+ [ 2265  1990]]
+Epoch: 3/10 | Valid Precision: 0.6713 | Valid Recall: 0.8071 | Valid Accuracy: 0.9212 | Valid CM: [[5100  332]
+ [ 162  678]]
+Epoch: 3/10 | Learning rate: 0.0005 | Optimal threshold 0.4526890218257904
+
+----------------------------------------------------------------------------------------------------
+
+Early stopping (no improvement since 3 models) | Best Metric: 0.8770888395734583
+---------- Fold: 4 ----------
+0:03:59 | Epoch: 1/10 | Train Loss: 288.7 | Valid Loss: 49.46 | Train ROC-AUC: 0.5372 | Valid ROC-AUC: 0.9082
+Epoch: 1/10 | Train Precision: 0.6487 | Train Recall: 0.4193 | Train Accuracy: 0.8905 | Train CM: [[26145   965]
+ [ 2468  1782]]
+Epoch: 1/10 | Valid Precision: 0.8904 | Valid Recall: 0.7948 | Valid Accuracy: 0.959 | Valid CM: [[5341   83]
+ [ 174  674]]
+Epoch: 1/10 | Learning rate: 0.0005 | Optimal threshold 0.24592584371566772
+
+----------------------------------------------------------------------------------------------------
+
+0:04:00 | Epoch: 2/10 | Train Loss: 263.2 | Valid Loss: 39.71 | Train ROC-AUC: 0.6003 | Valid ROC-AUC: 0.9335
+Epoch: 2/10 | Train Precision: 0.7443 | Train Recall: 0.4435 | Train Accuracy: 0.9039 | Train CM: [[26459   648]
+ [ 2367  1886]]
+Epoch: 2/10 | Valid Precision: 0.9198 | Valid Recall: 0.8526 | Valid Accuracy: 0.97 | Valid CM: [[5361   63]
+ [ 125  723]]
+Epoch: 2/10 | Learning rate: 0.0005 | Optimal threshold 0.2419532686471939
+
+----------------------------------------------------------------------------------------------------
+
+0:04:00 | Epoch: 3/10 | Train Loss: 257.4 | Valid Loss: 47.72 | Train ROC-AUC: 0.6159 | Valid ROC-AUC: 0.9343
+Epoch: 3/10 | Train Precision: 0.735 | Train Recall: 0.4637 | Train Accuracy: 0.9046 | Train CM: [[26396   711]
+ [ 2281  1972]]
+Epoch: 3/10 | Valid Precision: 0.9175 | Valid Recall: 0.8526 | Valid Accuracy: 0.9697 | Valid CM: [[5359   65]
+ [ 125  723]]
+Epoch: 3/10 | Learning rate: 0.0005 | Optimal threshold 0.14480999112129211
+
+----------------------------------------------------------------------------------------------------
+
+0:04:02 | Epoch: 4/10 | Train Loss: 247.8 | Valid Loss: 44.23 | Train ROC-AUC: 0.6373 | Valid ROC-AUC: 0.9329
+Epoch: 4/10 | Train Precision: 0.7476 | Train Recall: 0.4851 | Train Accuracy: 0.908 | Train CM: [[26413   696]
+ [ 2189  2062]]
+Epoch: 4/10 | Valid Precision: 0.9473 | Valid Recall: 0.8267 | Valid Accuracy: 0.9703 | Valid CM: [[5385   39]
+ [ 147  701]]
+Epoch: 4/10 | Learning rate: 0.0005 | Optimal threshold 0.1930742710828781
+
+----------------------------------------------------------------------------------------------------
+
+0:04:00 | Epoch: 5/10 | Train Loss: 251.3 | Valid Loss: 45.12 | Train ROC-AUC: 0.6291 | Valid ROC-AUC: 0.9374
+Epoch: 5/10 | Train Precision: 0.7939 | Train Recall: 0.4567 | Train Accuracy: 0.9103 | Train CM: [[26604   504]
+ [ 2310  1942]]
+Epoch: 5/10 | Valid Precision: 0.957 | Valid Recall: 0.8396 | Valid Accuracy: 0.9732 | Valid CM: [[5392   32]
+ [ 136  712]]
+Epoch: 5/10 | Learning rate: 0.0005 | Optimal threshold 0.1428924947977066
+
+----------------------------------------------------------------------------------------------------
+
+0:04:01 | Epoch: 6/10 | Train Loss: 247.9 | Valid Loss: 45.05 | Train ROC-AUC: 0.6383 | Valid ROC-AUC: 0.9408
+Epoch: 6/10 | Train Precision: 0.7785 | Train Recall: 0.4743 | Train Accuracy: 0.9104 | Train CM: [[26533   574]
+ [ 2236  2017]]
+Epoch: 6/10 | Valid Precision: 0.9464 | Valid Recall: 0.8325 | Valid Accuracy: 0.971 | Valid CM: [[5384   40]
+ [ 142  706]]
+Epoch: 6/10 | Learning rate: 0.0005 | Optimal threshold 0.113805390894413
+
+----------------------------------------------------------------------------------------------------
+
+0:04:02 | Epoch: 7/10 | Train Loss: 239.4 | Valid Loss: 39.99 | Train ROC-AUC: 0.6558 | Valid ROC-AUC: 0.9353
+Epoch: 7/10 | Train Precision: 0.7787 | Train Recall: 0.4999 | Train Accuracy: 0.9129 | Train CM: [[26505   604]
+ [ 2126  2125]]
+Epoch: 7/10 | Valid Precision: 0.9565 | Valid Recall: 0.8302 | Valid Accuracy: 0.9719 | Valid CM: [[5392   32]
+ [ 144  704]]
+Epoch: 7/10 | Learning rate: 0.0005 | Optimal threshold 0.27577319741249084
+
+----------------------------------------------------------------------------------------------------
+
+0:04:09 | Epoch: 8/10 | Train Loss: 242.0 | Valid Loss: 36.42 | Train ROC-AUC: 0.6468 | Valid ROC-AUC: 0.9401
+Epoch: 8/10 | Train Precision: 0.8385 | Train Recall: 0.4664 | Train Accuracy: 0.9154 | Train CM: [[26724   382]
+ [ 2270  1984]]
+Epoch: 8/10 | Valid Precision: 0.9479 | Valid Recall: 0.8585 | Valid Accuracy: 0.9745 | Valid CM: [[5384   40]
+ [ 120  728]]
+Epoch: 8/10 | Learning rate: 0.0005 | Optimal threshold 0.27456220984458923
+
+----------------------------------------------------------------------------------------------------
+
+Early stopping (no improvement since 3 models) | Best Metric: 0.9408061245661672
+---------- Fold: 5 ----------
+0:04:09 | Epoch: 1/10 | Train Loss: 285.8 | Valid Loss: 70.08 | Train ROC-AUC: 0.547 | Valid ROC-AUC: 0.8702
+Epoch: 1/10 | Train Precision: 0.6321 | Train Recall: 0.4269 | Train Accuracy: 0.8886 | Train CM: [[26049  1057]
+ [ 2438  1816]]
+Epoch: 1/10 | Valid Precision: 0.875 | Valid Recall: 0.7509 | Valid Accuracy: 0.9522 | Valid CM: [[5327   90]
+ [ 209  630]]
+Epoch: 1/10 | Learning rate: 0.0005 | Optimal threshold 0.09973665326833725
+
+----------------------------------------------------------------------------------------------------
+
+0:04:02 | Epoch: 2/10 | Train Loss: 269.1 | Valid Loss: 43.76 | Train ROC-AUC: 0.5825 | Valid ROC-AUC: 0.9248
+Epoch: 2/10 | Train Precision: 0.7104 | Train Recall: 0.4349 | Train Accuracy: 0.8993 | Train CM: [[26352   754]
+ [ 2404  1850]]
+Epoch: 2/10 | Valid Precision: 0.9425 | Valid Recall: 0.8212 | Valid Accuracy: 0.9693 | Valid CM: [[5375   42]
+ [ 150  689]]
+Epoch: 2/10 | Learning rate: 0.0005 | Optimal threshold 0.3413600027561188
+
+----------------------------------------------------------------------------------------------------
+
+0:04:01 | Epoch: 3/10 | Train Loss: 256.5 | Valid Loss: 43.0 | Train ROC-AUC: 0.6165 | Valid ROC-AUC: 0.9254
+Epoch: 3/10 | Train Precision: 0.7427 | Train Recall: 0.4579 | Train Accuracy: 0.905 | Train CM: [[26436   674]
+ [ 2304  1946]]
+Epoch: 3/10 | Valid Precision: 0.9107 | Valid Recall: 0.8391 | Valid Accuracy: 0.9674 | Valid CM: [[5348   69]
+ [ 135  704]]
+Epoch: 3/10 | Learning rate: 0.0005 | Optimal threshold 0.26379162073135376
+
+----------------------------------------------------------------------------------------------------
+
+0:04:02 | Epoch: 4/10 | Train Loss: 249.4 | Valid Loss: 53.88 | Train ROC-AUC: 0.6297 | Valid ROC-AUC: 0.9206
+Epoch: 4/10 | Train Precision: 0.7707 | Train Recall: 0.4671 | Train Accuracy: 0.9089 | Train CM: [[26517   591]
+ [ 2266  1986]]
+Epoch: 4/10 | Valid Precision: 0.9264 | Valid Recall: 0.8248 | Valid Accuracy: 0.9677 | Valid CM: [[5362   55]
+ [ 147  692]]
+Epoch: 4/10 | Learning rate: 0.0005 | Optimal threshold 0.08226180821657181
+
+----------------------------------------------------------------------------------------------------
+
+0:04:01 | Epoch: 5/10 | Train Loss: 249.9 | Valid Loss: 38.82 | Train ROC-AUC: 0.6261 | Valid ROC-AUC: 0.9322
+Epoch: 5/10 | Train Precision: 0.8068 | Train Recall: 0.4557 | Train Accuracy: 0.9114 | Train CM: [[26643   464]
+ [ 2315  1938]]
+Epoch: 5/10 | Valid Precision: 0.9266 | Valid Recall: 0.8427 | Valid Accuracy: 0.9699 | Valid CM: [[5361   56]
+ [ 132  707]]
+Epoch: 5/10 | Learning rate: 0.0005 | Optimal threshold 0.29131561517715454
+
+----------------------------------------------------------------------------------------------------
+
+0:04:02 | Epoch: 6/10 | Train Loss: 245.0 | Valid Loss: 38.82 | Train ROC-AUC: 0.6444 | Valid ROC-AUC: 0.9372
+Epoch: 6/10 | Train Precision: 0.8276 | Train Recall: 0.4699 | Train Accuracy: 0.9149 | Train CM: [[26694   416]
+ [ 2253  1997]]
+Epoch: 6/10 | Valid Precision: 0.9402 | Valid Recall: 0.8427 | Valid Accuracy: 0.9717 | Valid CM: [[5372   45]
+ [ 132  707]]
+Epoch: 6/10 | Learning rate: 0.0005 | Optimal threshold 0.2592185437679291
+
+----------------------------------------------------------------------------------------------------
+
+0:04:11 | Epoch: 7/10 | Train Loss: 244.8 | Valid Loss: 40.16 | Train ROC-AUC: 0.6347 | Valid ROC-AUC: 0.9392
+Epoch: 7/10 | Train Precision: 0.8207 | Train Recall: 0.4621 | Train Accuracy: 0.9135 | Train CM: [[26683   429]
+ [ 2285  1963]]
+Epoch: 7/10 | Valid Precision: 0.9446 | Valid Recall: 0.8534 | Valid Accuracy: 0.9736 | Valid CM: [[5375   42]
+ [ 123  716]]
+Epoch: 7/10 | Learning rate: 0.0005 | Optimal threshold 0.16381214559078217
+
+----------------------------------------------------------------------------------------------------
+
+0:04:06 | Epoch: 8/10 | Train Loss: 242.8 | Valid Loss: 44.89 | Train ROC-AUC: 0.6449 | Valid ROC-AUC: 0.9318
+Epoch: 8/10 | Train Precision: 0.7982 | Train Recall: 0.4772 | Train Accuracy: 0.9128 | Train CM: [[26595   513]
+ [ 2223  2029]]
+Epoch: 8/10 | Valid Precision: 0.9272 | Valid Recall: 0.82 | Valid Accuracy: 0.9672 | Valid CM: [[5363   54]
+ [ 151  688]]
+Epoch: 8/10 | Learning rate: 0.0005 | Optimal threshold 0.151136577129364
+
+----------------------------------------------------------------------------------------------------
+
+0:04:01 | Epoch: 9/10 | Train Loss: 241.4 | Valid Loss: 41.21 | Train ROC-AUC: 0.6464 | Valid ROC-AUC: 0.931
+Epoch: 9/10 | Train Precision: 0.8393 | Train Recall: 0.4645 | Train Accuracy: 0.9154 | Train CM: [[26732   378]
+ [ 2276  1974]]
+Epoch: 9/10 | Valid Precision: 0.9258 | Valid Recall: 0.8331 | Valid Accuracy: 0.9687 | Valid CM: [[5361   56]
+ [ 140  699]]
+Epoch: 9/10 | Learning rate: 0.0005 | Optimal threshold 0.2919061779975891
+
+----------------------------------------------------------------------------------------------------
+
+Early stopping (no improvement since 3 models) | Best Metric: 0.9391817529874464
